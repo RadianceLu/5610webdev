@@ -5,8 +5,8 @@ import {RegisterComponent} from './views/users/register/register.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'profile', component: ProfileComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'profile/:userId', component: ProfileComponent}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
