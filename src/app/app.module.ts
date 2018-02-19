@@ -21,6 +21,13 @@ import { WidgetListComponent } from './views/widget/widget-list/widget-list.comp
 import { WidgetHeaderComponent } from './views/widget/widget-edit/widget-header/widget-header.component';
 import { WidgetImageComponent } from './views/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './views/widget/widget-edit/widget-youtube/widget-youtube.component';
+import {PageService} from './services/page.service.client';
+import {WebsiteService} from './services/website.service.client';
+import {WidgetService} from './services/widget.service.client';
+import { WidgetNewComponent } from './views/widget/widget-new/widget-new.component';
+import { WidgetHeaderNewComponent } from './views/widget/widget-new/widget-header-new/widget-header-new.component';
+import { WidgetYoutubeNewComponent } from './views/widget/widget-new/widget-youtube-new/widget-youtube-new.component';
+import { WidgetImageNewComponent } from './views/widget/widget-new/widget-image-new/widget-image-new.component';
 
 
 @NgModule({
@@ -40,14 +47,18 @@ import { WidgetYoutubeComponent } from './views/widget/widget-edit/widget-youtub
     WidgetListComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    WidgetNewComponent,
+    WidgetHeaderNewComponent,
+    WidgetYoutubeNewComponent,
+    WidgetImageNewComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, PageService, WebsiteService, WidgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

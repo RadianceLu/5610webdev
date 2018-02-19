@@ -32,9 +32,9 @@ export class UserService {
     });
   }
 
-  updateUser(userId: String, user: User) {
+  updateUser(user: User) {
     for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i]._id === userId) {
+      if (this.users[i]._id === user._id) {
         this.users[i].firstName = user.firstName;
         this.users[i].lastName = user.lastName;
         return this.users[i];

@@ -9,11 +9,11 @@ export class WidgetService {
     new Widget('345', 'IMAGE', '321', '1', 'text', '100%', 'http://lorempixel.com/400/200/'),
     new Widget('456', 'HTML', '321', '1', '<p>Lorem ipsum</p>'),
     new Widget('567', 'HEADING', '321', '4', 'Lorem ipsum'),
-    new Widget('678', 'YOUTUBE', '321', '1', 'text', '100%', 'https://youtu.be/AM2Ivdi9c4E'),
+    new Widget('678', 'YOUTUBE', '321', '1', 'text', '100%', 'https://www.youtube.com/embed/AM2Ivdi9c4E'),
     new Widget('789', 'HTML', '321', '1', '<p>Lorem ipsum</p>')
   ];
 
-  createWidge(pageId: String, widget: Widget) {
+  createWidget(pageId: String, widget: Widget) {
     widget.pageId = pageId;
     this.widgets.push(widget);
   }
@@ -34,30 +34,29 @@ export class WidgetService {
     });
   }
 
-  updateWidget(widgetId: String, widget) {
+  updateWidget(widget) {
     for (let i = 0; i < this.widgets.length; i++) {
-      if (this.widgets[i]._id === widgetId) {
+      if (this.widgets[i]._id === widget._id) {
         switch (widget.widgetType) {
           case 'HEADER':
             this.widgets[i].text = widget.text;
             this.widgets[i].size = widget.size;
-            return true;
+            return this.widgets[i];
 
           case 'IMAGE':
             this.widgets[i].text = widget.text;
             this.widgets[i].url = widget.url;
             this.widgets[i].width = widget.width;
-            return true;
+            return this.widgets[i];
 
           case 'YOUTUBE':
             this.widgets[i].text = widget.text;
             this.widgets[i].url = widget.url;
             this.widgets[i].width = widget.width;
-            return true;
+            return this.widgets[i];
         }
       }
     }
-    return false;
   }
 
   deleteWidget(widgetId: String) {

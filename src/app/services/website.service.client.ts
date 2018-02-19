@@ -2,7 +2,7 @@ import {Website} from '../models/website.model.client';
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class WebService {
+export class WebsiteService {
   websites: Website[] = [
     new Website('123', 'Facebook', '456', 'Lorem'),
     new Website('234', 'Twitter', '456', 'Lorem'),
@@ -34,15 +34,21 @@ export class WebService {
     return resultSet;
   }
 
+  findWebsiteByUser2(userId: String) {
+    return this.websites.filter(function (website) {
+      return website.developerId === userId;
+    });
+  }
+
   findWebsiteById(websiteId: String) {
     return this.websites.find(function(website) {
       return website._id === websiteId;
     });
   }
 
-  updateWebsite(websiteId: String, website: Website) {
+  updateWebsite(website: Website) {
     for (let i = 0; i < this.websites.length; i++) {
-      if (this.websites[i]._id === websiteId) {
+      if (this.websites[i]._id === website._id) {
         this.websites[i].name = website.name;
         this.websites[i].developerId = website.developerId;
         this.websites[i].description = website.description;

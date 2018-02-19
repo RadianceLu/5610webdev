@@ -30,15 +30,21 @@ export class PageService {
     return resultSet;
   }
 
+  findPageByWebsiteId2(websiteId: String) {
+    return this.pages.filter(function (page) {
+      return page.websiteId === websiteId;
+    });
+  }
+
   findPageById(pageId: String) {
     return this.pages.find(function(page) {
       return page._id === pageId;
     });
   }
 
-  updatePage(pageId: String, page: Page) {
+  updatePage(page: Page) {
     for (let i = 0; i < this.pages.length; i++) {
-      if (this.pages[i]._id === pageId) {
+      if (this.pages[i]._id === page._id) {
         this.pages[i].name = page.name;
         this.pages[i].description = page.description;
         return this.pages[i];
