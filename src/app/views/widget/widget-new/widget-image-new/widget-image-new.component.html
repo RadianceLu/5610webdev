@@ -16,17 +16,21 @@
     </div>
 
     <div class="form-group">
-      <label for="widget-width">Url</label>
+      <label for="widget-width">Width</label>
       <input type="text" class="form-control" id="widget-width" placeholder="width" ngModel required name="width" #width="ngModel">
     </div>
 
-    <div class="form-group">
-      <label for="exampleInputFile">Upload</label>
-      <input type="file" class="form-control" id="exampleInputFile">
-    </div>
+    <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
 
-    <a class="btn btn-primary btn-block" routerLink="./">Upload Image</a>
+      <input  name="myFile"   type="file" class="form-control"/>
+      <input  name="widgetId" value="{{widgetId}}"   style="display: none"/>
+      <input  name="websiteId" value="{{websiteId}}"   style="display: none"/>
+      <input  name="pageId" value="{{pageId}}"   style="display: none"/>
+      <input  name="userId" value="{{userId}}"   style="display: none"/>
+      <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+      <br/>
 
+    </form>
     <button class="btn btn-primary btn-block" type="submit">Create</button>
     <a class="btn btn-danger btn-block" routerLink="../">Cancel</a>
   </form>

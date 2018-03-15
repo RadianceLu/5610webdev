@@ -3,6 +3,7 @@ import {Widget} from '../../../../models/widget.model.client';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-widget-image-new',
@@ -18,6 +19,11 @@ export class WidgetImageNewComponent implements OnInit {
   url: string;
   width: string;
 
+  baseUrl: String;
+  websiteId: String;
+  widgetId: String;
+  userId: String;
+
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute) { }
 
@@ -28,11 +34,16 @@ export class WidgetImageNewComponent implements OnInit {
     this.width = this.widgetForm.value.width;
 
     const widget: Widget = new Widget(new Date().getTime() + '', 'IMAGE', this.pageId, this.size, this.text, this.width, this.url);
-    this.widgetService.createWidget(this.pageId, widget);
+    this.widgetService.createWidget(this.pageId, widget).subscribe();
   }
   ngOnInit() {
+    this.baseUrl = environment.baseUrl;
     this.activatedRoute.params.subscribe((params: any) => {
+      this.userId = params['uid'];
+      this.websiteId = params['wid'];
       this.pageId = params['pid'];
+      this.pageId = params['pid'];
+      this.widgetId = params['wgid'];
     });
   }
 

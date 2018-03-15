@@ -8,7 +8,7 @@
       <label for="widget-size">Size</label>
       <input type="text" class="form-control" id="widget-size" placeholder="Size" ngModel required name="size" #size="ngModel">
     </div>
-    <button class="btn btn-primary btn-block" type="submit">Create</button>
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Create</button>
     <a class="btn btn-danger btn-block" routerLink="../">Cancel</a>
   </form>
 </div>

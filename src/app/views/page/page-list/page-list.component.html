@@ -22,7 +22,7 @@
 <div class="container-fluid cl-container-padding">
   <ul class="list-group cl-list-group-borderless">
     <li class="list-group-item cl-list-item-borderless" *ngFor = "let page of pages">
-      <a routerLink={{page._id}}><span class="glyphicon glyphicon-cog pull-right"></span></a>
+      <a routerLink="{{page._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
       <a routerLink="{{page._id}}/widget">{{page.name}}</a>
     </li>
   </ul>
@@ -32,7 +32,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
-      <a href="/profile/{{userId}}" class="cl-icon-padding">
+      <a routerLink="/profile/{{userId}}" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </div>

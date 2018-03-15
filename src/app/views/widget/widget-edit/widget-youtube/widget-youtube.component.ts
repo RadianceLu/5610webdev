@@ -15,17 +15,21 @@ export class WidgetYoutubeComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   updateWidget(widget) {
-    console.log(widget);
-    this.widgetService.updateWidget( widget);
+    this.widgetService.updateWidget(widget).subscribe();
   }
 
   deleteWidget(widgetId) {
-    this.widgetService.deleteWidget(widgetId);
+    this.widgetService.deleteWidget(widgetId).subscribe();
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      const preWidget = this.widgetService.findWidgetById(params['wgid']);
-      this.widget = Object.assign({}, preWidget);
+      // const preWidget = this.widgetService.findWidgetById(params['wgid']);
+      // this.widget = Object.assign({}, preWidget);
+      this.widgetService.findWidgetById(params['wgid']).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+        }
+      );
     });
   }
 

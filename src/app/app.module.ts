@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {routing} from './app.routing';
 import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/user/login/login.component';
@@ -28,6 +30,11 @@ import { WidgetNewComponent } from './views/widget/widget-new/widget-new.compone
 import { WidgetHeaderNewComponent } from './views/widget/widget-new/widget-header-new/widget-header-new.component';
 import { WidgetYoutubeNewComponent } from './views/widget/widget-new/widget-youtube-new/widget-youtube-new.component';
 import { WidgetImageNewComponent } from './views/widget/widget-new/widget-image-new/widget-image-new.component';
+import { SortableDirective } from '../../assignment/directives/sortable.directive';
+import { WidgetHtmlNewComponent } from './views/widget/widget-new/widget-html-new/widget-html-new.component';
+import { WidgetTextNewComponent } from './views/widget/widget-new/widget-text-new/widget-text-new.component';
+import {QuillEditorModule} from 'ngx-quill-editor/quillEditor.module';
+
 
 
 @NgModule({
@@ -51,12 +58,18 @@ import { WidgetImageNewComponent } from './views/widget/widget-new/widget-image-
     WidgetNewComponent,
     WidgetHeaderNewComponent,
     WidgetYoutubeNewComponent,
-    WidgetImageNewComponent
+    WidgetImageNewComponent,
+    SortableDirective,
+    WidgetHtmlNewComponent,
+    WidgetTextNewComponent
   ],
   imports: [
     BrowserModule,
     routing,
-    FormsModule
+    FormsModule,
+    HttpModule,
+    HttpClientModule,
+    QuillEditorModule
   ],
   providers: [UserService, PageService, WebsiteService, WidgetService],
   bootstrap: [AppComponent]

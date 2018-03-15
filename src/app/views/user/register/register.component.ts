@@ -1,8 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
 import {NgForm} from '@angular/forms';
 import {User} from '../../../models/user.model.client';
+import {Page} from '../../../models/page.model.client';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,9 @@ export class RegisterComponent implements OnInit {
   userErrorFlag: boolean;
   userErrorMsg: 'User exists!';
 
-  constructor(private userService: UserService, private router: Router) { }
+  user: User;
+  constructor(private userService: UserService, private router: Router,
+              private activatedRouter: ActivatedRoute) { }
   register() {
     this.username = this.registerForm.value.username;
     this.password = this.registerForm.value.password;
@@ -37,9 +40,15 @@ export class RegisterComponent implements OnInit {
       this.userErrorFlag = true;
     }
 
-    const user: User = new User(new Date().getTime() + '', this.username, this.password, this.firstName, this.lastName);
-    this.userService.createUser(user);
-    this.router.navigate(['/profile', user._id]);
+    // const user: User = new User(new Date().getTime() + '', this.username, this.password, this.firstName, this.lastName);
+    this.user = new User(new Date().getTime() + '', this.username, this.password, this.firstName, this.lastName);
+    this.userService.createUser(this.user).subscribe(
+      (data: any) => {
+        this.user = data;
+        this.router.navigate(['/profile', this.user._id]);
+        // this.router.navigate(['/login']);
+      }
+    );
   }
 
   ngOnInit() {

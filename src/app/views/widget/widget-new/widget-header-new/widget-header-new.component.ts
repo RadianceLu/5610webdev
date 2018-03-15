@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {WidgetService} from '../../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Widget} from '../../../../models/widget.model.client';
 
 @Component({
@@ -16,15 +16,22 @@ export class WidgetHeaderNewComponent implements OnInit {
   text: string;
   size: string;
 
+  widget: Widget;
   constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   createWidget() {
     this.text = this.widgetForm.value.text;
     this.size = this.widgetForm.value.size;
 
-    const widget: Widget = new Widget(new Date().getTime() + '', 'HEADING', this.pageId, this.size, this.text);
-    this.widgetService.createWidget(this.pageId, widget);
+    // const widget: Widget = new Widget(new Date().getTime() + '', 'HEADING', this.pageId, this.size, this.text);
+    this.widget = new Widget(new Date().getTime() + '', 'HEADING', this.pageId, this.size, this.text);
+    this.widgetService.createWidget(this.pageId, this.widget).subscribe(
+      (data: any) => {
+        this.widget = data;
+      }
+    );
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {

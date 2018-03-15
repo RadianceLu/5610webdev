@@ -21,6 +21,8 @@
 
 
 <div class="container cl-container-padding">
+  <!--<div id="sortable">-->
+  <div class="widget-list" appSortable (newIndexes)="reorderWidgets($event)">
 
   <div *ngFor="let widget of widgets">
 
@@ -65,8 +67,31 @@
         </div>
       </div>
 
-    </div>
+      <div *ngSwitchCase="'HTML'">
+        <div class="pull-right">
+          <a routerLink="./" class="pull-right">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </a>
+          <a routerLink="{{widget._id}}">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+        <h2>{{widget.text}}</h2>
+      </div>
 
+      <div *ngSwitchCase="'TEXT'">
+        <div class="pull-right">
+          <a routerLink="./" class="pull-right">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </a>
+          <a routerLink="{{widget._id}}">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+        <h2>{{widget.text}}</h2>
+      </div>
+    </div>
+  </div>
   </div>
 
 </div>

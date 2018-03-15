@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+
 // Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -43,5 +44,19 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
+// var webmaker = require('./assignment/app');
+// webmaker(app);
 
-server.listen( port , () => console.log('Running on port 3100'));
+// var hello = require('./hello');
+// hello(app);
+
+
+
+// var serverSide = require('./assignment/app');
+// serverSide(app);
+
+require("./assignment/app")(app);
+
+
+server.listen( port , function() {
+  console.log('Running on port ', app.get('port'))});

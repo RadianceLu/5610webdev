@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {PageService} from '../../../services/page.service.client';
 import {Page} from '../../../models/page.model.client';
@@ -17,15 +17,23 @@ export class PageNewComponent implements OnInit {
   name: String;
   description: String;
 
+  page: Page;
+
   constructor(private activatedRoute: ActivatedRoute,
-              private pageService: PageService) { }
+              private pageService: PageService,
+              private router: Router) { }
 
   createPage() {
     this.name = this.pageForm.value.name;
     this.description = this.pageForm.value.description;
 
-    const page: Page = new Page(new Date().getTime() + '', this.name, this.websiteId, this.description);
-    this.pageService.createPage(this.websiteId, page);
+    // const page: Page = new Page(new Date().getTime() + '', this.name, this.websiteId, this.description);
+    this.page = new Page(new Date().getTime() + '', this.name, this.websiteId, this.description);
+    this.pageService.createPage(this.websiteId, this.page).subscribe(
+      (data: any) => {
+        this.page = data;
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      });
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe(

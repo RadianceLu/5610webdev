@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Widget} from '../../../models/widget.model.client';
 import {WidgetService} from '../../../services/widget.service.client';
 import {ActivatedRoute} from '@angular/router';
+import {Website} from '../../../models/website.model.client';
 
 @Component({
   selector: 'app-widget-edit',
@@ -15,17 +16,20 @@ export class WidgetEditComponent implements OnInit {
   constructor(private widgetService: WidgetService,
               private route: ActivatedRoute) { }
 
-  updateWidget(widget) {
-    console.log(widget);
-    this.widget = this.widgetService.updateWidget(widget);
+  updateWidget(changed_widget) {
+    this.widgetService.updateWidget(changed_widget).subscribe();
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const preWidget = this.widgetService.findWidgetById(params['wgid']);
-      this.widget = Object.assign({}, preWidget);
+      // const preWidget = this.widgetService.findWidgetById(params['wgid']);
+      // this.widget = Object.assign({}, preWidget);
+      this.widgetService.findWidgetById(params['wgid']).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+        }
+      );
       this.userId = params['uid'];
     });
   }
-
 }

@@ -14,18 +14,22 @@ export class WidgetHeaderComponent implements OnInit {
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute) { }
 
-  updateWidget(widget) {
-    console.log(widget);
-    this.widgetService.updateWidget(widget);
+  updateWidget(changed_widget) {
+    this.widgetService.updateWidget(changed_widget).subscribe();
   }
 
   deleteWidget(widgetId) {
-    this.widgetService.deleteWidget(widgetId);
+    this.widgetService.deleteWidget(widgetId).subscribe();
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.widget = this.widgetService.findWidgetById(params['wgid']);
-      // this.widget = Object.assign({}, preWidget);
+      // this.widget = this.widgetService.findWidgetById(params['wgid']);
+      ///////// this.widget = Object.assign({}, preWidget);
+      this.widgetService.findWidgetById(params['wgid']).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
+        }
+      );
     });
   }
 }

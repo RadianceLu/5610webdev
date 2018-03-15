@@ -31,6 +31,7 @@
       <input type="text" class="form-control" id="page-description" placeholder="Page Description" ngModel required name="description" #description="ngModel">
     </div>
 
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Create</button>
   </form>
 </div>
 

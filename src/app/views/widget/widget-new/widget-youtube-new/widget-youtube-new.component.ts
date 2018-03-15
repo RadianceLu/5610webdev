@@ -29,7 +29,7 @@ export class WidgetYoutubeNewComponent implements OnInit {
     this.width = this.widgetForm.value.width;
 
     const widget: Widget = new Widget(new Date().getTime() + '', 'IMAGE', this.pageId, this.size, this.text, this.width, this.url);
-    this.widgetService.createWidget(this.pageId, widget);
+    this.widgetService.createWidget(this.pageId, widget).subscribe();
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
