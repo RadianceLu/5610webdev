@@ -15,18 +15,22 @@ export class WidgetHtmlNewComponent implements OnInit {
   pageId: String;
   widget: Widget;
 
-  name: String;
-  text: String;
-  size: String;
-  width: String;
-  url: String;
-  rows: String;
-  placeHolder: String;
-  formatted: String;
-  middle: String;
+  name: string;
+  text: string;
+  size: string;
+  width: string;
+  url: string;
+  rows: string;
+  placeHolder: string;
+  formatted: string;
+  middle: string;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute) { }
+
+  onContentChanged({quill, html, text}) {
+    this.middle = html;
+  }
 
   createWidget() {
     this.name = this.widgetForm.value.name;
@@ -39,12 +43,12 @@ export class WidgetHtmlNewComponent implements OnInit {
     this.placeHolder = 'placeHolder';
     this.formatted = 'formatted';
 
-    this.widget = new Widget(new Date().getTime() + '', 'HTML', this.pageId, this.size.toString(),
-this.text.toString(), this.width.toString(), this.url.toString(), this.name.toString(),
-this.rows.toString(), this.placeHolder.toString(), this.formatted.toString());
+    this.widget = new Widget(new Date().getTime() + '', 'HTML', this.pageId, this.size,
+this.text, this.width, this.url, this.name, this.rows, this.placeHolder, this.formatted);
+    this.widget.text = this.middle;
     this.widgetService.createWidget(this.pageId, this.widget).subscribe();
-    this.middle = this.text;
   }
+
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
       this.pageId = params['pid'];

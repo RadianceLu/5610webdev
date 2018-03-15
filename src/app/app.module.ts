@@ -34,6 +34,8 @@ import { SortableDirective } from '../../assignment/directives/sortable.directiv
 import { WidgetHtmlNewComponent } from './views/widget/widget-new/widget-html-new/widget-html-new.component';
 import { WidgetTextNewComponent } from './views/widget/widget-new/widget-text-new/widget-text-new.component';
 import {QuillEditorModule} from 'ngx-quill-editor/quillEditor.module';
+import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
 
 
 
@@ -61,7 +63,9 @@ import {QuillEditorModule} from 'ngx-quill-editor/quillEditor.module';
     WidgetImageNewComponent,
     SortableDirective,
     WidgetHtmlNewComponent,
-    WidgetTextNewComponent
+    WidgetTextNewComponent,
+    WidgetHtmlComponent,
+    WidgetTextComponent
   ],
   imports: [
     BrowserModule,

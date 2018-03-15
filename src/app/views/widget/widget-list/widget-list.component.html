@@ -76,7 +76,7 @@
             <span class="glyphicon glyphicon-cog"></span>
           </a>
         </div>
-        <h2>{{widget.text}}</h2>
+        <div [innerHTML]="widget.text"></div>
       </div>
 
       <div *ngSwitchCase="'TEXT'">

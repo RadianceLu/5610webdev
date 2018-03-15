@@ -38,11 +38,10 @@ const server = http.createServer(app);
 //serverSide(app);
 
 
-
 // For Build: Catch all other routes and return the index file -- BUILDING
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+// app.get('*', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'dist/index.html'));
+// });
 
 // var webmaker = require('./assignment/app');
 // webmaker(app);
