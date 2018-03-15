@@ -24,20 +24,23 @@ module.exports = function (app) {
 
   function createUser(req, res){
     var user = req.body;
-    var newUser = {
-      _id: (new Date()).getTime() + "",
-      username: user.username,
-      password: user.password,
-      firstName: user.firstName,
-      lastName: user.lastName
-    };
+    // var newUser = {
+    //   _id: (new Date()).getTime() + "",
+    //   username: user.username,
+    //   password: user.password,
+    //   firstName: user.firstName,
+    //   lastName: user.lastName
+    // };
 
-    users.push(newUser);
-    if (newUser) {
-      res.status(200).json(newUser);
-    } else {
-      res.sendStatus(500);
-    }
+    user._id = new Date().getTime().toString();
+    users.push(user);
+    // users.push(newUser);
+    // if (newUser) {
+    //   res.status(200).json(newUser);
+    // } else {
+    //   res.sendStatus(500);
+    // }
+    res.json(user);
   }
 
   function findUserByUserName(req, res) {
@@ -110,4 +113,4 @@ module.exports = function (app) {
     }
   }
 
-}
+};

@@ -38,10 +38,7 @@ const server = http.createServer(app);
 //serverSide(app);
 
 
-// For Build: Catch all other routes and return the index file -- BUILDING
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+
 
 // var webmaker = require('./assignment/app');
 // webmaker(app);
@@ -56,6 +53,10 @@ app.get('*', function (req, res) {
 
 require("./assignment/app")(app);
 
+// For Build: Catch all other routes and return the index file -- BUILDING
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 server.listen( port , function() {
   console.log('Running on port ', app.get('port'))});
