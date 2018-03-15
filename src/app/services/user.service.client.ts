@@ -2,7 +2,6 @@ import { User } from '../models/user.model.client';
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/Rx';
-// import {environment} from '../../environments/environment';
 import {environment} from '../../environments/environment.prod';
 
 @Injectable()
@@ -11,20 +10,12 @@ export class UserService {
 
   baseUrl = environment.baseUrl;
 
-  // users: User[] = [
-  //   new User('123', 'alice', 'alice', 'Alice', 'Wonder'),
-  //   new User('234', 'bob', 'bob', 'Bob', 'Marley'),
-  //   new User('345', 'charly', 'charly', 'Charly', 'Garcia'),
-  //   new User('456', 'jannunzi', 'jannunzi', 'Jannunzi', 'Annunzi')
-  // ];
-
   createUser(user: User) {
     const url = this.baseUrl + '/api/user';
     return this.http.post(url, user)
       .map((response: Response) => {
         return response.json();
       });
-    // this.users.push(new User(user._id, user.username, user.password, user.firstName, user.lastName));
   }
 
   findUserByCredential(username: String, password: String) {

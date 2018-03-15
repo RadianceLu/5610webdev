@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Widget} from '../models/widget.model.client';
 import {Http, Response} from '@angular/http';
 import 'rxjs/Rx';
-// import {environment} from '../../environments/environment';
 import {environment} from '../../environments/environment.prod';
 
 @Injectable()
@@ -34,28 +33,6 @@ export class WidgetService {
   }
 
   updateWidget(widget) {
-    // for (let i = 0; i < this.widgets.length; i++) {
-    //   if (this.widgets[i]._id === widget._id) {
-    //     switch (widget.widgetType) {
-    //       case 'HEADER':
-    //         this.widgets[i].text = widget.text;
-    //         this.widgets[i].size = widget.size;
-    //         return this.widgets[i];
-    //
-    //       case 'IMAGE':
-    //         this.widgets[i].text = widget.text;
-    //         this.widgets[i].url = widget.url;
-    //         this.widgets[i].width = widget.width;
-    //         return this.widgets[i];
-    //
-    //       case 'YOUTUBE':
-    //         this.widgets[i].text = widget.text;
-    //         this.widgets[i].url = widget.url;
-    //         this.widgets[i].width = widget.width;
-    //         return this.widgets[i];
-    //     }
-    //   }
-    // }
     const url = this.baseUrl + '/api/widget/' + widget._id;
     return this.http.put(url, widget).map((response: Response) => {
       return response.json();
