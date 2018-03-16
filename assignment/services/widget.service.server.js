@@ -165,7 +165,7 @@ module.exports = function (app) {
       }
     }
 
-    widget.url = 'assets/uploads/' + filename;
+    widget.url = '/uploads/' + filename;
 
     console.log(filename);
 
