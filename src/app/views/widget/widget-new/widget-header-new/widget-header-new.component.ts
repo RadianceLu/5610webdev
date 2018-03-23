@@ -30,6 +30,7 @@ export class WidgetHeaderNewComponent implements OnInit {
     this.widgetService.createWidget(this.pageId, this.widget).subscribe(
       (data: any) => {
         this.widget = data;
+        this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
       }
     );
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Widget} from '../../../../models/widget.model.client';
 import {WidgetService} from '../../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 
 @Component({
@@ -18,14 +18,24 @@ export class WidgetImageComponent implements OnInit {
   userId: String;
 
   constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   updateWidget(widget) {
-    this.widgetService.updateWidget(widget).subscribe();
+    this.widgetService.updateWidget(widget).subscribe(
+      (data: any) => {
+        this.widget = data;
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
 
   deleteWidget(widgetId) {
-    this.widgetService.deleteWidget(widgetId).subscribe();
+    this.widgetService.deleteWidget(widgetId).subscribe(
+      (data: any) => {
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
   ngOnInit() {
     this.baseUrl = environment.baseUrl;

@@ -12,6 +12,7 @@ import {WidgetListComponent} from './views/widget/widget-list/widget-list.compon
 import {WidgetChooserComponent} from './views/widget/widget-chooser/widget-chooser.component';
 import {WidgetEditComponent} from './views/widget/widget-edit/widget-edit.component';
 import {WidgetNewComponent} from './views/widget/widget-new/widget-new.component';
+import {FlickrImageSearchComponent} from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
   {path: 'profile/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
   {path: 'profile/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
   {path: 'profile/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
-  {path: 'profile/:uid/website/:wid/page/:pid/widget/new/:wgtype', component: WidgetNewComponent}
+  {path: 'profile/:uid/website/:wid/page/:pid/widget/new/:wgtype', component: WidgetNewComponent},
+  {path: 'profile/:uid/website/:wid/page/:pid/widget/:wgid/flickr', component: FlickrImageSearchComponent}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

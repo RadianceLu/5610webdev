@@ -36,6 +36,8 @@ import { WidgetTextNewComponent } from './views/widget/widget-new/widget-text-ne
 import {QuillEditorModule} from 'ngx-quill-editor/quillEditor.module';
 import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
+import { FlickrImageSearchComponent } from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {FlickrService} from './services/flickr.service.client';
 
 
 
@@ -65,7 +67,8 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
     WidgetHtmlNewComponent,
     WidgetTextNewComponent,
     WidgetHtmlComponent,
-    WidgetTextComponent
+    WidgetTextComponent,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,7 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
     HttpClientModule,
     QuillEditorModule
   ],
-  providers: [UserService, PageService, WebsiteService, WidgetService],
+  providers: [UserService, PageService, WebsiteService, WidgetService, FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

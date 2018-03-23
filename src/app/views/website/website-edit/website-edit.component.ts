@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Website} from '../../../models/website.model.client';
 import {WebsiteService} from '../../../services/website.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../models/user.model.client';
 
 @Component({
@@ -15,14 +15,23 @@ export class WebsiteEditComponent implements OnInit {
   websites: Website[] = [];
 
   constructor(private websiteService: WebsiteService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   updateWebsite(changed_website) {
-    this.websiteService.updateWebsite(changed_website).subscribe();
+    this.websiteService.updateWebsite(changed_website).subscribe(
+      (data: any) => {
+        this.website = data;
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
 
   deleteWebsite(websiteId) {
     this.websiteService.deleteWebsite(websiteId).subscribe(
+      (data: any)  => {
+      this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+    }
     );
   }
 

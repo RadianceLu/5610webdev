@@ -55,6 +55,10 @@ const server = http.createServer(app);
 
 require("./assignment/app")(app);
 
+var mongoose = require('mongoose');
+//mongodb://<dbuser>:<dbpassword>@ds263847.mlab.com:63847/heroku_5b7815xd
+var db = mongoose.connect('mongodb://localhost:27017/webdev');
+
 // For Build: Catch all other routes and return the index file -- BUILDING
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));

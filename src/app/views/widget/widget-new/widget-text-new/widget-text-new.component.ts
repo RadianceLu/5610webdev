@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {Widget} from '../../../../models/widget.model.client';
 import {NgForm} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-widget-text-new',
@@ -25,7 +25,8 @@ export class WidgetTextNewComponent implements OnInit {
   formatted: String;
 
   constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   createWidget() {
     this.name = this.widgetForm.value.text;
@@ -40,7 +41,12 @@ export class WidgetTextNewComponent implements OnInit {
     this.widget = new Widget(new Date().getTime() + '', 'TEXT', this.pageId, this.size.toString(),
       this.text.toString(), this.width.toString(), this.url.toString(), this.name.toString(), this.rows.toString(),
       this.placeHolder.toString(), this.formatted.toString());
-    this.widgetService.createWidget(this.pageId, this.widget).subscribe();
+    this.widgetService.createWidget(this.pageId, this.widget).subscribe(
+      (data: any) => {
+        this.widget = data;
+        this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {

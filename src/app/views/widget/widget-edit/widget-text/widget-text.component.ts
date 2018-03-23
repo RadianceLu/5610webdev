@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {Widget} from '../../../../models/widget.model.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-widget-text',
@@ -13,14 +13,24 @@ export class WidgetTextComponent implements OnInit {
   widget: Widget;
 
   constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   updateWidget(changed_widget) {
-    this.widgetService.updateWidget(changed_widget).subscribe();
+    this.widgetService.updateWidget(changed_widget).subscribe(
+      (data: any) => {
+        this.widget = data;
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
 
   deleteWidget(widgetId) {
-    this.widgetService.deleteWidget(widgetId).subscribe();
+    this.widgetService.deleteWidget(widgetId).subscribe(
+      (data: any) => {
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {

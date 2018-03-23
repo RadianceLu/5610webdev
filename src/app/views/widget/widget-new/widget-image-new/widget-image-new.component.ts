@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Widget} from '../../../../models/widget.model.client';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {NgForm} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
 
 @Component({
@@ -13,6 +13,7 @@ import {environment} from '../../../../../environments/environment';
 export class WidgetImageNewComponent implements OnInit {
   @ViewChild('f') widgetForm: NgForm;
   pageId: String;
+  widget: Widget
 
   text: string;
   size: string;
@@ -25,7 +26,8 @@ export class WidgetImageNewComponent implements OnInit {
   userId: String;
 
   constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   createWidget() {
     this.text = this.widgetForm.value.text;
@@ -33,8 +35,13 @@ export class WidgetImageNewComponent implements OnInit {
     this.url = this.widgetForm.value.url;
     this.width = this.widgetForm.value.width;
 
-    const widget: Widget = new Widget(new Date().getTime() + '', 'IMAGE', this.pageId, this.size, this.text, this.width, this.url);
-    this.widgetService.createWidget(this.pageId, widget).subscribe();
+    this.widget = new Widget(new Date().getTime() + '', 'IMAGE', this.pageId, this.size, this.text, this.width, this.url);
+    this.widgetService.createWidget(this.pageId, this.widget).subscribe(
+      (data: any) => {
+        this.widget = data;
+        this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
   ngOnInit() {
     this.baseUrl = environment.baseUrl;

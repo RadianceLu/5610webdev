@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Widget} from '../../../models/widget.model.client';
 import {WidgetService} from '../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Website} from '../../../models/website.model.client';
 
 @Component({
@@ -14,14 +14,20 @@ export class WidgetEditComponent implements OnInit {
   userId: String;
 
   constructor(private widgetService: WidgetService,
-              private route: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   updateWidget(changed_widget) {
-    this.widgetService.updateWidget(changed_widget).subscribe();
+    this.widgetService.updateWidget(changed_widget).subscribe(
+      (data: any) => {
+        this.widget = data;
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
       // const preWidget = this.widgetService.findWidgetById(params['wgid']);
       // this.widget = Object.assign({}, preWidget);
       this.widgetService.findWidgetById(params['wgid']).subscribe(

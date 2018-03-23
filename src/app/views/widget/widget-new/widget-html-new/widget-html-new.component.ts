@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {Widget} from '../../../../models/widget.model.client';
 
@@ -26,7 +26,8 @@ export class WidgetHtmlNewComponent implements OnInit {
   middle: string;
 
   constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   onContentChanged({quill, html, text}) {
     this.middle = html;
@@ -46,7 +47,12 @@ export class WidgetHtmlNewComponent implements OnInit {
     this.widget = new Widget(new Date().getTime() + '', 'HTML', this.pageId, this.size,
 this.text, this.width, this.url, this.name, this.rows, this.placeHolder, this.formatted);
     this.widget.text = this.middle;
-    this.widgetService.createWidget(this.pageId, this.widget).subscribe();
+    this.widgetService.createWidget(this.pageId, this.widget).subscribe(
+      (data: any) => {
+        this.widget = data;
+        this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
 
   ngOnInit() {
