@@ -1,4 +1,9 @@
 
+<div *ngIf="passwordErrorFlag"
+     class="alert alert-danger">
+  {{passwordErrorMsg}}
+</div>
+
 <div class="container">
   <h1>Register</h1>
   <form (ngSubmit) = "register()" #f="ngForm">
@@ -34,15 +39,7 @@
           Please enter valid username
     </span>
 
-    <span *ngIf="passwordErrorFlag"
-         class="alert alert-danger">
-      {{passwordErrorMsg}}
-    </span>
 
-    <span *ngIf="userErrorFlag"
-         class="alert alert-danger">
-      {{userErrorMsg}}
-    </span>
   </form>
 </div>
 

@@ -19,9 +19,7 @@ export class RegisterComponent implements OnInit {
   password: String;
   verifyPassword: String;
   passwordErrorFlag: boolean;
-  passwordErrorMsg: 'password does not macth';
-  userErrorFlag: boolean;
-  userErrorMsg: 'User exists!';
+  passwordErrorMsg = 'password does not macth';
 
   user: User;
   constructor(private userService: UserService, private router: Router,
@@ -29,26 +27,30 @@ export class RegisterComponent implements OnInit {
   register() {
     this.username = this.registerForm.value.username;
     this.password = this.registerForm.value.password;
-    this.verifyPassword = this.registerForm.value.password;
+    this.verifyPassword = this.registerForm.value.verifyPassword;
     this.firstName = this.registerForm.value.firstName;
     this.lastName = this.registerForm.value.lastName;
 
+    // if (this.password !== this.verifyPassword) {
+    //   this.passwordErrorFlag = true;
+    // }
+    // if (this.userService.findUserByCredential(this.username, this.password)) {
+    //   this.userErrorFlag = true;
+    // }
+
     if (this.password !== this.verifyPassword) {
       this.passwordErrorFlag = true;
+    } else {
+      // const user: User = new User(new Date().getTime() + '', this.username, this.password, this.firstName, this.lastName);
+      this.user = new User(new Date().getTime() + '', this.username, this.password, this.firstName, this.lastName);
+      this.userService.createUser(this.user).subscribe(
+        (user: User) => {
+          this.user = user;
+          this.router.navigate(['/profile', this.user._id]);
+          // this.router.navigate(['/login']);
+        }
+      );
     }
-    if (this.userService.findUserByCredential(this.username, this.password)) {
-      this.userErrorFlag = true;
-    }
-
-    // const user: User = new User(new Date().getTime() + '', this.username, this.password, this.firstName, this.lastName);
-    this.user = new User(new Date().getTime() + '', this.username, this.password, this.firstName, this.lastName);
-    this.userService.createUser(this.user).subscribe(
-      (data: any) => {
-        this.user = data;
-        this.router.navigate(['/profile', this.user._id]);
-        // this.router.navigate(['/login']);
-      }
-    );
   }
 
   ngOnInit() {
