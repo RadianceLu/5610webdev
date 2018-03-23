@@ -170,7 +170,7 @@ module.exports = function (app) {
     console.log(filename);
 
     // var callbackUrl = "http://localhost:4200/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
-    var callbackUrl = "https://jielu-webdev.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+    var callbackUrl = "https://jielu-webdev.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget";
     res.redirect(callbackUrl);
   }
 
