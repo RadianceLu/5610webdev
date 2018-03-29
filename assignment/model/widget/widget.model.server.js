@@ -25,7 +25,6 @@ function findAllWidgetsForPage(pageId) {
   return pageModel.findPageById(pageId)
     .populate('widgets')
     .then(function (page) {
-      console.log(page);
       return page.widgets;
     });
   // return widgetModel.find({_page: pageId});

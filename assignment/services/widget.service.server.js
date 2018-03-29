@@ -19,7 +19,6 @@ module.exports = function (app) {
   app.get("/api/widget/:widgetId", findWidgetById);
   app.put("/api/widget/:widgetId", updateWidget);
   app.delete("/api/widget/:widgetId", deleteWidget);
-  // app.delete("/api/page/:pageId/widget/:widgetId", deleteWidget);
   app.put("/api/page/:pageId/widget", reorderWidgets);
   app.post("/api/upload", upload.single('myFile'), uploadImage);
 
@@ -192,10 +191,11 @@ module.exports = function (app) {
     if (widgetId === undefined || widgetId === null || widgetId === '') {
       var widget = {
         widgetType: "IMAGE",
-        pageId: pageId,
+        _page: pageId,
         size: 1,
         text: 'text',
-        width: width
+        width: width,
+        url: url
       };
 
       widgetModel.createWidget(pageId, widget)
@@ -234,7 +234,7 @@ module.exports = function (app) {
     }
 
 
-    // var callbackUrl = "http://localhost:4200/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+    // var callbackUrl = "http://localhost:4200/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget";
     var callbackUrl = "https://jielu-webdev.herokuapp.com/profile/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget";
     res.redirect(callbackUrl);
   }
