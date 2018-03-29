@@ -17,12 +17,12 @@ export class WidgetHtmlNewComponent implements OnInit {
 
   name: string;
   text: string;
-  size: string;
+  size: number;
   width: string;
   url: string;
-  rows: string;
+  rows: number;
   placeHolder: string;
-  formatted: string;
+  formatted: boolean;
   middle: string;
 
   constructor(private widgetService: WidgetService,
@@ -37,19 +37,19 @@ export class WidgetHtmlNewComponent implements OnInit {
     this.name = this.widgetForm.value.name;
     this.text = this.widgetForm.value.text;
 
-    this.size = '1';
+    this.size = 1;
     this.width = '100%';
     this.url = 'url';
-    this.rows = 'rows';
+    this.rows = 1;
     this.placeHolder = 'placeHolder';
-    this.formatted = 'formatted';
+    this.formatted = true;
 
-    this.widget = new Widget(new Date().getTime() + '', 'HTML', this.pageId, this.size,
+    this.widget = new Widget(undefined, 'HTML', this.pageId, this.size,
 this.text, this.width, this.url, this.name, this.rows, this.placeHolder, this.formatted);
     this.widget.text = this.middle;
     this.widgetService.createWidget(this.pageId, this.widget).subscribe(
-      (data: any) => {
-        this.widget = data;
+      () => {
+        // this.widget = data;
         this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
       }
     );

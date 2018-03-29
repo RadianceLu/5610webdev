@@ -13,6 +13,7 @@ export class WebsiteEditComponent implements OnInit {
   website: Website;
   userId: String;
   websites: Website[] = [];
+  websiteId: String;
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
@@ -29,7 +30,7 @@ export class WebsiteEditComponent implements OnInit {
 
   deleteWebsite(websiteId) {
     this.websiteService.deleteWebsite(websiteId).subscribe(
-      (data: any)  => {
+      ()  => {
       this.router.navigate(['../'], {relativeTo: this.activatedRoute});
     }
     );
@@ -38,6 +39,7 @@ export class WebsiteEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.userId = params['uid'];
+      this.websiteId = params['wid'];
       // const preWebsite = this.websiteService.findWebsiteById(params['wid']);
       // this.website = Object.assign({}, preWebsite);
       this.websiteService.findWebsiteById(params['wid']).subscribe(

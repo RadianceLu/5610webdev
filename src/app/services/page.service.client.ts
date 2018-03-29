@@ -15,9 +15,10 @@ export class PageService {
 
   createPage(websiteId: String, page: Page) {
     const url = this.baseUrl + '/api/website/' + websiteId + '/page';
-    return this.http.post(url, page).map((response: Response) => {
-      return response.json();
-    });
+    return this.http.post(url, page);
+    //   .map((response: Response) => {
+    //   return response.json();
+    // });
   }
 
   findPageByWebsiteId(websiteId: String) {
@@ -43,8 +44,9 @@ export class PageService {
 
   deletePage(pageId: String) {
     const url = this.baseUrl + '/api/page/' + pageId;
-    return this.http.delete(url).map((response: Response) => {
-      return response.json();
-    });
+    return this.http.delete(url);
+    //   .map((response: Response) => {
+    //   return response.json();
+    // });
   }
 }

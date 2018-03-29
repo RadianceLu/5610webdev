@@ -17,9 +17,9 @@ export class ProfileComponent implements OnInit {
 
   updateUser(changed_user) {
     return this.userService.updateUser(changed_user).subscribe(
-      (user: User) => {
-        this.user = user;
-      }
+      // (user: User) => {
+      //   this.user = user;
+      // }
     );
   }
 

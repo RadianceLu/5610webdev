@@ -16,7 +16,7 @@ export class WidgetImageNewComponent implements OnInit {
   widget: Widget
 
   text: string;
-  size: string;
+  size: number;
   url: string;
   width: string;
 
@@ -35,10 +35,10 @@ export class WidgetImageNewComponent implements OnInit {
     this.url = this.widgetForm.value.url;
     this.width = this.widgetForm.value.width;
 
-    this.widget = new Widget(new Date().getTime() + '', 'IMAGE', this.pageId, this.size, this.text, this.width, this.url);
+    this.widget = new Widget(undefined, 'IMAGE', this.pageId, this.size, this.text, this.width, this.url);
     this.widgetService.createWidget(this.pageId, this.widget).subscribe(
-      (data: any) => {
-        this.widget = data;
+      () => {
+        // this.widget = data;
         this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
       }
     );

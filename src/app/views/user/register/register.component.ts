@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   lastName: String;
   password: String;
   verifyPassword: String;
+  email: String;
   passwordErrorFlag: boolean;
   passwordErrorMsg = 'password does not macth';
 
@@ -30,24 +31,17 @@ export class RegisterComponent implements OnInit {
     this.verifyPassword = this.registerForm.value.verifyPassword;
     this.firstName = this.registerForm.value.firstName;
     this.lastName = this.registerForm.value.lastName;
-
-    // if (this.password !== this.verifyPassword) {
-    //   this.passwordErrorFlag = true;
-    // }
-    // if (this.userService.findUserByCredential(this.username, this.password)) {
-    //   this.userErrorFlag = true;
-    // }
+    this.email = this.registerForm.value.email;
 
     if (this.password !== this.verifyPassword) {
       this.passwordErrorFlag = true;
     } else {
-      // const user: User = new User(new Date().getTime() + '', this.username, this.password, this.firstName, this.lastName);
-      this.user = new User(new Date().getTime() + '', this.username, this.password, this.firstName, this.lastName);
+      this.user = new User(undefined, this.username, this.password, this.firstName, this.lastName, this.email);
       this.userService.createUser(this.user).subscribe(
         (user: User) => {
+          console.log('success');
           this.user = user;
           this.router.navigate(['/profile', this.user._id]);
-          // this.router.navigate(['/login']);
         }
       );
     }

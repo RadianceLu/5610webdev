@@ -14,9 +14,10 @@ export class WidgetService {
 
   createWidget(pageId: String, widget: Widget) {
     const url = this.baseUrl + '/api/page/' + pageId + '/widget';
-    return this.http.post(url, widget).map((response: Response) => {
-      return response.json();
-    });
+    return this.http.post(url, widget);
+    //   .map((response: Response) => {
+    //   return response.json();
+    // });
   }
 
   findWidgetByPageId(pageId: String) {
@@ -35,22 +36,25 @@ export class WidgetService {
 
   updateWidget(widget) {
     const url = this.baseUrl + '/api/widget/' + widget._id;
-    return this.http.put(url, widget).map((response: Response) => {
-      return response.json();
-    });
+    return this.http.put(url, widget);
+    //   .map((response: Response) => {
+    //   return response.json();
+    // });
   }
 
   deleteWidget(widgetId: String) {
     const url = this.baseUrl + '/api/widget/' + widgetId;
-    return this.http.delete(url).map((response: Response) => {
-      return response.json();
-    });
+    return this.http.delete(url);
+    //   .map((response: Response) => {
+    //   return response.json();
+    // });
   }
 
   reorderWidgets(startIndex, endIndex, pageId) {
     const url = this.baseUrl + '/api/page/' + pageId + '/widget?start=' + startIndex + '&end=' + endIndex;
-    return this.http.put(url, '').map((response: Response) => {
-      return response.json();
-    });
+    return this.http.put(url, '');
+    //   .map((response: Response) => {
+    //   return response.json();
+    // });
   }
 }

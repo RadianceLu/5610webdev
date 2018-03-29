@@ -2,17 +2,17 @@ export class Widget {
   _id: String;
   widgetType: String;
   pageId: String;
-  size: String;
+  size: Number;
   text: String;
   url: String;
   width: String;
   name: String;
-  rows: String;
+  rows: Number;
   placeHolder: String;
-  formatted: String;
+  formatted: Boolean;
 
-  constructor(_id, widgetType, pageId, size = '1', text = 'text', width = '100%', url = 'url', name = 'name', rows = '1',
-placeHolder = 'placeHolder', formatted = 'formatted') {
+  constructor(_id, widgetType, pageId, size = 1, text = 'text', width = '100%', url = 'url', name = 'name', rows = 1,
+placeHolder = 'placeHolder', formatted = true) {
     this._id = _id;
     this.name = name;
     this.widgetType = widgetType;

@@ -17,8 +17,8 @@ export class WidgetHeaderComponent implements OnInit {
 
   updateWidget(changed_widget) {
     this.widgetService.updateWidget(changed_widget).subscribe(
-      (data: any) => {
-        this.widget = data;
+      () => {
+        // this.widget = data;
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );
@@ -26,7 +26,7 @@ export class WidgetHeaderComponent implements OnInit {
 
   deleteWidget(widgetId) {
     this.widgetService.deleteWidget(widgetId).subscribe(
-      (data: any) => {
+      () => {
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );

@@ -27,8 +27,7 @@ export class WebsiteNewComponent implements OnInit {
     this.name = this.websiteForm.value.name;
     this.description = this.websiteForm.value.description;
 
-    // const website: Website = new Website(new Date().getTime() + '', this.name, this.userId, this.description);
-    this.website = new Website(new Date().getTime() + '', this.name, this.userId, this.description);
+    this.website = new Website(undefined, this.name, this.userId, this.description);
     this.websiteService.createWebsite(this.userId, this.website).subscribe(
       (data: any) => {
         this.website = data;

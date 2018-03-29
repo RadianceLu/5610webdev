@@ -27,7 +27,6 @@
   <div *ngFor="let widget of widgets">
 
     <div [ngSwitch]="widget.widgetType">
-
       <div *ngSwitchCase="'HEADING'">
         <div class="pull-right">
           <a routerLink="./" class="pull-right">

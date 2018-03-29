@@ -17,12 +17,12 @@ export class WidgetTextNewComponent implements OnInit {
 
   name: String;
   text: String;
-  size: String;
+  size: number;
   width: String;
   url: String;
-  rows: String;
+  rows: number;
   placeHolder: String;
-  formatted: String;
+  formatted: boolean;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
@@ -33,17 +33,17 @@ export class WidgetTextNewComponent implements OnInit {
     this.text = this.widgetForm.value.text;
     this.rows = this.widgetForm.value.text;
     this.placeHolder = this.widgetForm.value.placeHolder;
-    this.size = '1';
+    this.size = 1;
     this.width = '100%';
     this.url = 'url';
-    this.formatted = 'formatted';
+    this.formatted = true;
 
-    this.widget = new Widget(new Date().getTime() + '', 'TEXT', this.pageId, this.size.toString(),
-      this.text.toString(), this.width.toString(), this.url.toString(), this.name.toString(), this.rows.toString(),
-      this.placeHolder.toString(), this.formatted.toString());
+    this.widget = new Widget(undefined, 'TEXT', this.pageId, this.size,
+      this.text.toString(), this.width.toString(), this.url.toString(), this.name.toString(), this.rows,
+      this.placeHolder.toString(), this.formatted);
     this.widgetService.createWidget(this.pageId, this.widget).subscribe(
-      (data: any) => {
-        this.widget = data;
+      () => {
+        // this.widget = data;
         this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
       }
     );

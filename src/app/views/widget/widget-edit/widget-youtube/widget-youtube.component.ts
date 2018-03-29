@@ -17,8 +17,8 @@ export class WidgetYoutubeComponent implements OnInit {
 
   updateWidget(widget) {
     this.widgetService.updateWidget(widget).subscribe(
-      (data: any) => {
-        this.widget = data;
+      () => {
+        // this.widget = data;
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );
@@ -26,7 +26,7 @@ export class WidgetYoutubeComponent implements OnInit {
 
   deleteWidget(widgetId) {
     this.widgetService.deleteWidget(widgetId).subscribe(
-      (data: any) => {
+      () => {
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );

@@ -15,6 +15,7 @@ export class UserService {
     const url = this.baseUrl + '/api/user';
     return this.http.post(url, user)
       .map((response: Response) => {
+        console.log('connected');
         return response.json();
       });
   }

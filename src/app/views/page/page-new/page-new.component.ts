@@ -27,8 +27,7 @@ export class PageNewComponent implements OnInit {
     this.name = this.pageForm.value.name;
     this.description = this.pageForm.value.description;
 
-    // const page: Page = new Page(new Date().getTime() + '', this.name, this.websiteId, this.description);
-    this.page = new Page(new Date().getTime() + '', this.name, this.websiteId, this.description);
+    this.page = new Page(undefined, this.name, this.websiteId, this.description);
     this.pageService.createPage(this.websiteId, this.page).subscribe(
       (data: any) => {
         this.page = data;

@@ -28,15 +28,13 @@ export class PageEditComponent implements OnInit {
 
   deletePage(pageId) {
     this.pageService.deletePage(pageId).subscribe(
-      (data: any) => {
+      () => {
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );
   }
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      // const prePage = this.pageService.findPageById(params['pid']);
-      // this.page = Object.assign({}, prePage);
       this.pageService.findPageById(params['pid']).subscribe(
         (page: Page) => {
           this.page = page;

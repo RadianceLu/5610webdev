@@ -19,8 +19,8 @@ export class WidgetEditComponent implements OnInit {
 
   updateWidget(changed_widget) {
     this.widgetService.updateWidget(changed_widget).subscribe(
-      (data: any) => {
-        this.widget = data;
+      () => {
+        // this.widget = data;
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );
