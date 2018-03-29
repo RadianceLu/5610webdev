@@ -26,7 +26,6 @@ module.exports = function (app) {
   function createWidget(req, res) {
     var pageId = req.params['pageId'];
     var widget = req.body;
-    console.log(pageId);
 
     widgetModel.createWidget(pageId, widget)
       .then(

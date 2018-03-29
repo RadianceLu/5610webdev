@@ -22,6 +22,7 @@
       <span class="input-group-addon">
         <!--<input [(ngModel)]="formatted" type="checkbox" name="formatted"/>-->
         <input type="checkbox" ngModel required name="formatted" #formatted="ngModel" [ngModelOptions]="{standalone: false}">
+        <!--<input type="checkbox" ng-check="exists(item, selected)" ng-click="toggle(item, selected)" ngModel required name="formatted" #formatted="ngModel">-->
       </span>
     </div>
     <br/>

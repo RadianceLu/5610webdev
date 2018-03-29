@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class WidgetHeaderComponent implements OnInit {
   widget: Widget;
+  sizeValid: boolean;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
