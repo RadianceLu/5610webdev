@@ -15,13 +15,13 @@ export class WidgetTextNewComponent implements OnInit {
   pageId: String;
   widget: Widget;
 
-  name: String;
-  text: String;
+  name: string;
+  text: string;
   size: number;
-  width: String;
-  url: String;
+  width: string;
+  url: string;
   rows: number;
-  placeHolder: String;
+  placeholder: string;
   formatted: boolean;
 
   constructor(private widgetService: WidgetService,
@@ -29,18 +29,25 @@ export class WidgetTextNewComponent implements OnInit {
               private router: Router) { }
 
   createWidget() {
-    this.name = this.widgetForm.value.text;
+    this.name = this.widgetForm.value.name;
+    // console.log('widgetForm: ');
+    // console.log(this.widgetForm);
+    // console.log('widgetForm.value: ');
+    // console.log(this.widgetForm.value);
     this.text = this.widgetForm.value.text;
-    this.rows = this.widgetForm.value.text;
-    this.placeHolder = this.widgetForm.value.placeHolder;
+    this.rows = this.widgetForm.value.rows;
+    this.formatted = (this.widgetForm.value.formatted !== '');
+    // this.formatted = this.widgetForm.value.formatted;
+
+    this.placeholder = this.widgetForm.value.placeholder;
+    // console.log(this.formatted);
     this.size = 1;
     this.width = '100%';
     this.url = 'url';
-    this.formatted = true;
 
     this.widget = new Widget(undefined, 'TEXT', this.pageId, this.size,
-      this.text.toString(), this.width.toString(), this.url.toString(), this.name.toString(), this.rows,
-      this.placeHolder.toString(), this.formatted);
+      this.text, this.width, this.url, this.name, this.rows, this.placeholder, this.formatted);
+    console.log(this.widget);
     this.widgetService.createWidget(this.pageId, this.widget).subscribe(
       () => {
         // this.widget = data;

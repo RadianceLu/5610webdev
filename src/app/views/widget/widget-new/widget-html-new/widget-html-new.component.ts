@@ -41,8 +41,8 @@ export class WidgetHtmlNewComponent implements OnInit {
     this.width = '100%';
     this.url = 'url';
     this.rows = 1;
-    this.placeHolder = 'placeHolder';
-    this.formatted = true;
+    this.placeHolder = 'placeholder';
+    this.formatted = false;
 
     this.widget = new Widget(undefined, 'HTML', this.pageId, this.size,
 this.text, this.width, this.url, this.name, this.rows, this.placeHolder, this.formatted);

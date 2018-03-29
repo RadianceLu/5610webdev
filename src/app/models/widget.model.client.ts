@@ -8,11 +8,11 @@ export class Widget {
   width: String;
   name: String;
   rows: Number;
-  placeHolder: String;
+  placeholder: String;
   formatted: Boolean;
 
   constructor(_id, widgetType, pageId, size = 1, text = 'text', width = '100%', url = 'url', name = 'name', rows = 1,
-placeHolder = 'placeHolder', formatted = true) {
+              placeholder = 'placeholder', formatted = true) {
     this._id = _id;
     this.name = name;
     this.widgetType = widgetType;
@@ -22,7 +22,7 @@ placeHolder = 'placeHolder', formatted = true) {
     this.url = url;
     this.width = width;
     this.rows = rows;
-    this.placeHolder = placeHolder;
+    this.placeholder = placeholder;
     this.formatted = formatted;
   }
 }
