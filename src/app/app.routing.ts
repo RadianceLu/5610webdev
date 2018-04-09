@@ -13,22 +13,24 @@ import {WidgetChooserComponent} from './views/widget/widget-chooser/widget-choos
 import {WidgetEditComponent} from './views/widget/widget-edit/widget-edit.component';
 import {WidgetNewComponent} from './views/widget/widget-new/widget-new.component';
 import {FlickrImageSearchComponent} from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {AuthGuard} from './services/auth-guard.service';
+import {ModuleWithProviders} from '@angular/compiler/src/core';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile/:uid', component: ProfileComponent},
-  {path: 'profile/:uid/website', component: WebsiteListComponent},
-  {path: 'profile/:uid/website/new', component: WebsiteNewComponent},
-  {path: 'profile/:uid/website/:wid', component: WebsiteEditComponent},
-  {path: 'profile/:uid/website/:wid/page', component: PageListComponent},
-  {path: 'profile/:uid/website/:wid/page/new', component: PageNewComponent},
-  {path: 'profile/:uid/website/:wid/page/:pid', component: PageEditComponent},
-  {path: 'profile/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
-  {path: 'profile/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
-  {path: 'profile/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
-  {path: 'profile/:uid/website/:wid/page/:pid/widget/new/:wgtype', component: WidgetNewComponent},
-  {path: 'profile/:uid/website/:wid/page/:pid/widget/:wgid/flickr', component: FlickrImageSearchComponent}
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website', component: WebsiteListComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/new', component: WebsiteNewComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/:wid', component: WebsiteEditComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/:wid/page', component: PageListComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/:wid/page/new', component: PageNewComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/:wid/page/:pid', component: PageEditComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/:wid/page/:pid/widget', component: WidgetListComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/:wid/page/:pid/widget/new/:wgtype', component: WidgetNewComponent, canActivate: [AuthGuard]},
+  {path: 'profile/website/:wid/page/:pid/widget/:wgid/flickr', component: FlickrImageSearchComponent, canActivate: [AuthGuard]}
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

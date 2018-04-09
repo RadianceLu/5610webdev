@@ -7,14 +7,12 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./widget-new.component.css']
 })
 export class WidgetNewComponent implements OnInit {
-  userId: String;
   widgetType: String;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
-      this.userId = params['uid'];
       this.widgetType = params['wgtype'];
     });
   }

@@ -3,6 +3,8 @@ import {Widget} from '../../../models/widget.model.client';
 import {WidgetService} from '../../../services/widget.service.client';
 import {ActivatedRoute} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
+import {User} from '../../../models/user.model.client';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-widget-list',
@@ -13,10 +15,12 @@ export class WidgetListComponent implements OnInit {
   pageId: String;
   widgets: Widget[] = [];
   userId: String;
+  user: User;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer,
+              private sharedService: SharedService) { }
 
   getUrl(url: String) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url.toString());
@@ -31,17 +35,17 @@ export class WidgetListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.sharedService.user;
+    this.userId = this.user._id;
     this.activatedRoute.params.subscribe(
       (params: any) => {
         this.pageId = params['pid'];
-        this.userId = params['uid'];
       }
     );
 
     this.widgetService.findWidgetByPageId(this.pageId).subscribe(
       (widgets: Widget[]) => {
         this.widgets = widgets;
-        console.log(this.widgets);
       }
     );
   }

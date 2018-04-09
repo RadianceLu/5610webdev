@@ -3,6 +3,7 @@ import {Widget} from '../../../models/widget.model.client';
 import {WidgetService} from '../../../services/widget.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Website} from '../../../models/website.model.client';
+import {User} from '../../../models/user.model.client';
 
 @Component({
   selector: 'app-widget-edit',
@@ -11,7 +12,6 @@ import {Website} from '../../../models/website.model.client';
 })
 export class WidgetEditComponent implements OnInit {
   widget: Widget;
-  userId: String;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
@@ -35,7 +35,6 @@ export class WidgetEditComponent implements OnInit {
           this.widget = widget;
         }
       );
-      this.userId = params['uid'];
     });
   }
 }

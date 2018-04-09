@@ -10,7 +10,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class WidgetHeaderComponent implements OnInit {
   widget: Widget;
-  sizeValid: boolean;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
@@ -19,7 +18,6 @@ export class WidgetHeaderComponent implements OnInit {
   updateWidget(changed_widget) {
     this.widgetService.updateWidget(changed_widget).subscribe(
       () => {
-        // this.widget = data;
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );

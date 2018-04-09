@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {PageService} from '../../../services/page.service.client';
 import {Page} from '../../../models/page.model.client';
+import {User} from '../../../models/user.model.client';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-page-new',
@@ -16,12 +18,14 @@ export class PageNewComponent implements OnInit {
   websiteId: String;
   name: String;
   description: String;
+  user: User;
 
   page: Page;
 
   constructor(private activatedRoute: ActivatedRoute,
               private pageService: PageService,
-              private router: Router) { }
+              private router: Router,
+              private sharedService: SharedService) { }
 
   createPage() {
     this.name = this.pageForm.value.name;
@@ -35,9 +39,10 @@ export class PageNewComponent implements OnInit {
       });
   }
   ngOnInit() {
+    this.user = this.sharedService.user;
+    this.userId = this.user._id;
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.userId = params['uid'];
         this.websiteId = params['wid'];
       }
     );

@@ -7,16 +7,10 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./widget-chooser.component.css']
 })
 export class WidgetChooserComponent implements OnInit {
-  userId: String;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(
-      (params: any) => {
-        this.userId = params['uid'];
-      }
-    );
   }
 
 }

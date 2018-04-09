@@ -3,6 +3,7 @@ import {Website} from '../../../models/website.model.client';
 import {WebsiteService} from '../../../services/website.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../../models/user.model.client';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-website-edit',
@@ -14,10 +15,12 @@ export class WebsiteEditComponent implements OnInit {
   userId: String;
   websites: Website[] = [];
   websiteId: String;
+  user: User;
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private sharedService: SharedService) { }
 
   updateWebsite(changed_website) {
     this.websiteService.updateWebsite(changed_website).subscribe(
@@ -37,8 +40,9 @@ export class WebsiteEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.sharedService.user;
+    this.userId = this.user._id;
     this.activatedRoute.params.subscribe(params => {
-      this.userId = params['uid'];
       this.websiteId = params['wid'];
       // const preWebsite = this.websiteService.findWebsiteById(params['wid']);
       // this.website = Object.assign({}, preWebsite);

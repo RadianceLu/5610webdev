@@ -13,7 +13,6 @@ export class FlickrImageSearchComponent implements OnInit {
 
   websiteId: string;
   pageId: string;
-  userId: string;
   widgetId: string;
   photos: [any];
   error: string;
@@ -30,7 +29,6 @@ export class FlickrImageSearchComponent implements OnInit {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.userId = params['uid'];
           this.websiteId = params['wid'];
           this.pageId = params['pid'];
           this.widgetId = params['wgid'];

@@ -3,6 +3,8 @@ import {Page} from '../../../models/page.model.client';
 import {PageService} from '../../../services/page.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Website} from '../../../models/website.model.client';
+import {User} from '../../../models/user.model.client';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-page-edit',
@@ -12,10 +14,12 @@ import {Website} from '../../../models/website.model.client';
 export class PageEditComponent implements OnInit {
   page: Page;
   userId: String;
+  user: User;
 
   constructor(private pageService: PageService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private sharedService: SharedService) { }
 
   updatePage(changed_page) {
     this.pageService.updatePage(changed_page).subscribe(
@@ -34,13 +38,14 @@ export class PageEditComponent implements OnInit {
     );
   }
   ngOnInit() {
+    this.user = this.sharedService.user;
     this.activatedRoute.params.subscribe(params => {
       this.pageService.findPageById(params['pid']).subscribe(
         (page: Page) => {
           this.page = page;
         }
       );
-      this.userId = params['uid'];
+      this.userId = this.user._id;
     });
   }
 

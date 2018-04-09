@@ -36,13 +36,14 @@ export class RegisterComponent implements OnInit {
     if (this.password !== this.verifyPassword) {
       this.passwordErrorFlag = true;
     } else {
-      this.user = new User(undefined, this.username, this.password, this.firstName, this.lastName, this.email);
-      this.userService.createUser(this.user).subscribe(
+      // this.user = new User(undefined, this.username, this.password, this.firstName, this.lastName, this.email);
+      // this.userService.createUser(this.user).subscribe(
+      this.userService.register(this.username, this.password, this.firstName, this.lastName, this.email).subscribe(
         (user: User) => {
           console.log('success');
           this.user = user;
-          this.router.navigate(['/profile', this.user._id]);
-        }
+          this.router.navigate(['/profile']);
+        },
       );
     }
   }
