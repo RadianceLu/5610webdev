@@ -4,12 +4,11 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 
 // var facebookcallbackUrl = "http://localhost:3100/auth/facebook/callback";
-var facebookcallbackUrl = "https://jielu-webdev.herokuapp.com/auth/facebook/callback";
 
 var facebookConfig = {
   clientID: process.env.APPID,
   clientSecret: process.env.SECRET,
-  callbackURL: facebookcallbackUrl
+  callbackURL: process.env.CALLBACKURL
 };
 
 
