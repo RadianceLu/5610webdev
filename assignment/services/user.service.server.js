@@ -3,14 +3,12 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 
-// var APPID = '157942255034876';
-// var SECRET = '459618c0319b4183de5ce42b8c4666ef';
 // var facebookcallbackUrl = "http://localhost:3100/auth/facebook/callback";
 var facebookcallbackUrl = "https://jielu-webdev.herokuapp.com/auth/facebook/callback";
 
 var facebookConfig = {
-  clientID: APPID,
-  clientSecret: SECRET,
+  clientID: process.env.APPID,
+  clientSecret: process.env.SECRET,
   callbackURL: facebookcallbackUrl
 };
 
